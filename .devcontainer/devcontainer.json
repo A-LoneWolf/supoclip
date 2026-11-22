@@ -1,0 +1,28 @@
+{
+  "name": "SupoClip",
+  "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
+  "features": {
+    "ghcr.io/devcontainers/features/docker-in-docker:2": {},
+    "ghcr.io/devcontainers/features/github-cli:1": {}
+  },
+  "hostRequirements": {
+    "cpus": 4
+  },
+  "secrets": {
+    "ASSEMBLY_AI_API_KEY": {
+      "description": "AssemblyAI API key (transcription)"
+    },
+    "GOOGLE_API_KEY": {
+      "description": "Google Gemini API key (clip selection)"
+    },
+    "YT_COOKIES": {
+      "description": "OPTIONAL: YouTube cookies.txt contents (Netscape format) to get past YouTube's datacenter-IP blocking. Use a throwaway Google account."
+    }
+  },
+  "forwardPorts": [3107, 8000],
+  "portsAttributes": {
+    "3107": { "label": "SupoClip app", "onAutoForward": "notify" },
+    "8000": { "label": "SupoClip API" }
+  },
+  "postStartCommand": "bash .devcontainer/setup.sh"
+}
